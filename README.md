@@ -1,6 +1,6 @@
 ## Stormpath Java RoadStorm Tour Code
 
-Check out the [Java RoadStorm Tour](http://roadstorm.afitnerd.com) landing page for tour dates and information.
+Check out the [Java RoadStorm Tour](http://roadstorm.stormpath.com) landing page for tour dates and information.
 
 The code included in this repo is the tutorial code used in talks on the Java RoadStorm Tour. There are two tutorials:
 
