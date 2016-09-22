@@ -1,15 +1,17 @@
 package io.jsonwebtoken.jjwtfun.controller;
 
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RestController
+@Controller
 public class HomeController {
 
-    @RequestMapping("/")
-    public String home(HttpServletRequest req) {
+    @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.ALL_VALUE)
+    public @ResponseBody String restHome(HttpServletRequest req) {
         String requestUrl = getUrl(req);
         return "Available commands (assumes httpie - https://github.com/jkbrzt/httpie):\n\n" +
             "  http " + requestUrl + "/\n\tThis usage message\n\n" +
@@ -22,6 +24,11 @@ public class HomeController {
             "  http " + requestUrl + "/get-secrets\n\tShow the signing keys currently in use.\n\n" +
             "  http " + requestUrl + "/refresh-secrets\n\tGenerate new signing keys and show them.\n\n" +
             "  http POST " + requestUrl + "/set-secrets HS256=base64-encoded-value HS384=base64-encoded-value HS512=base64-encoded-value\n\tExplicitly set secrets to use in the application.";
+    }
+
+    @RequestMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE, consumes = MediaType.ALL_VALUE)
+    public String home() {
+        return "redirect:/jwt-csrf-form";
     }
 
     private String getUrl(HttpServletRequest req) {
