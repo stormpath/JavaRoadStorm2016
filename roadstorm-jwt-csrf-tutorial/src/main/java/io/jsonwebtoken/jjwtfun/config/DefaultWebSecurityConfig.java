@@ -15,5 +15,7 @@ public class DefaultWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             .antMatchers("/**")
             .permitAll();
+
+        http.csrf().ignoringAntMatchers("/dynamic**", "/static**", "/parser**");
     }
 }
